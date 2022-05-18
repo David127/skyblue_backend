@@ -1,4 +1,4 @@
-package dtos;
+package com.backend.skyblue.dtos;
 
 import lombok.Data;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -17,5 +17,6 @@ public class Trabajador implements Serializable {
     private Long id;
     private String nombre;
     private String apellido;
+    private String estado;
 
 }
