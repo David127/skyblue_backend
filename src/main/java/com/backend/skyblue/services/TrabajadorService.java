@@ -21,7 +21,7 @@ public class TrabajadorService implements CrudService {
     TrabajadorRepository trabajadorRepository;
     @Override
     public Page<Trabajador> listarEnPaginas(String estado, Pageable pageable) {
-        return trabajadorRepository.searchPaginacion(estado,pageable);
+        return trabajadorRepository.listarEnPaginas(estado,pageable);
     }
 
     @Override
