@@ -1,0 +1,38 @@
+[
+    {
+        "id": 0,
+        "nombre": "String",
+        "apellidoPaterno": "String",
+        "apellidoMaterno": "String",
+        "tipoDocumento": "String",
+        "nroDocumento": "String",
+        "telefono": "String",
+        "correo": "String",
+        "direccion": "String",
+        "ubigeo": {
+            "departamento": "String",
+            "provincia": "String",
+            "distrito": "String"
+        },
+        "sexo": "String",
+        "estadoCivil": "String",
+        "observacion": "String",
+        "fechaNacimiento": "String",
+        "fechaIngreso": "String",
+        "fechaSalida": "String",
+        "cargo": {
+            "responsable": "String",
+            "nombre": "String",
+            "descripcion": "String",
+            "sueldo": {
+                "turno": "string",
+                "dias": 0,
+                "remunaracion": 0,
+                "soles": 0,
+                "dolares": 0,
+                "horasExtras": "String"
+            }
+        },
+        "estado": "String"
+    }
+]
