@@ -30,7 +30,7 @@ public class TrabajadorService implements CrudService {
     }
 
     @Override
-    public List<?> listarTodos() {
+    public List<Trabajador> listarTodos() {
         return trabajadorRepository.findAll();
     }
 
