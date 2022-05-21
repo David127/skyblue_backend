@@ -1,5 +1,6 @@
 package com.backend.skyblue.services;
 
+import com.backend.skyblue.dtos.Sueldo;
 import com.backend.skyblue.dtos.Trabajador;
 import com.backend.skyblue.repository.TrabajadorRepository;
 import com.backend.skyblue.repository.generic.CrudService;
@@ -10,15 +11,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 @Transactional
-
 public class TrabajadorService implements CrudService {
     @Autowired
     TrabajadorRepository trabajadorRepository;
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     public Page<Trabajador> listarEnPaginas(String estado, Pageable pageable) {
         return trabajadorRepository.listarEnPaginas(estado,pageable);
@@ -41,8 +46,12 @@ public class TrabajadorService implements CrudService {
     public Trabajador insertar(Trabajador obj){
         if(obj == null)
             throw new IllegalArgumentException ("El objeto Trabajador no puede ser nulo");
-        return  trabajadorRepository.save(obj);
+
+        return trabajadorRepository.save(obj);
     }
+
+
+
     public Trabajador actualizar(Trabajador obj){
         return  trabajadorRepository.save(obj);
     }
