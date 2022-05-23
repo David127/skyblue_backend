@@ -34,6 +34,7 @@ public class VehiculoController {
         SysHttpResponse response = new SysHttpResponse(HttpStatus.OK.value(), "Listado exitoso",listVehiculos);
         if(!asc)
             vehiculoService.listarEnPaginas( estado, PageRequest.of(page, size));
+            
         return  new ResponseEntity( response, HttpStatus.OK);
     }
 
