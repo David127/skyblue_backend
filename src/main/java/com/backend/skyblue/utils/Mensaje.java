@@ -19,7 +19,6 @@ public class Mensaje {
         this.interaction = interaction;
         this.index = 0;
     }
-
     public Mensaje(String origin, String interaction, long index) {
         this.origin = origin;
         this.interaction = interaction;

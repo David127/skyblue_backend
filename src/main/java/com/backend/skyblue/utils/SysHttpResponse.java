@@ -17,7 +17,7 @@ public class SysHttpResponse {
     public static SysHttpResponse ok (Object data) {
         return new SysHttpResponse(HttpStatus.OK.value(), "success", data);
     }
-
+ 
     public static SysHttpResponse ok (String message, Object data) {
         return new SysHttpResponse(HttpStatus.OK.value(), message, data);
     }
