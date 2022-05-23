@@ -29,4 +29,5 @@ public class SysHttpResponse {
     public static SysHttpResponse error5xx (String message, Object data) {
         return new SysHttpResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), message, data);
     }
+    
 }

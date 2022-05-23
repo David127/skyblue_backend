@@ -24,4 +24,5 @@ public class Mensaje {
         this.interaction = interaction;
         this.index = index;
     }
+    
 }

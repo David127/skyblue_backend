@@ -23,4 +23,5 @@ public class Sueldo implements Serializable {
     private Double dolares;
     private Double soles;
     private Double total;
+    
 }

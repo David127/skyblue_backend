@@ -18,4 +18,5 @@ public class Cargo  implements Serializable {
     private String descripcion;
     private String responsable;
 
+    
 }
