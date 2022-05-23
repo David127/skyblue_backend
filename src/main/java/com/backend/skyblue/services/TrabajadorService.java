@@ -50,8 +50,6 @@ public class TrabajadorService implements CrudService {
         return trabajadorRepository.save(obj);
     }
 
-
-
     public Trabajador actualizar(Trabajador obj){
         return  trabajadorRepository.save(obj);
     }

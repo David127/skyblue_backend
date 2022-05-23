@@ -17,4 +17,5 @@ public interface VehiculoRepositoy extends JpaRepository<Vehiculo, Long> {
     )
 
     Page<Vehiculo> listarEnPaginas(@Param("estado") String estado, Pageable pageable);
+    
 }

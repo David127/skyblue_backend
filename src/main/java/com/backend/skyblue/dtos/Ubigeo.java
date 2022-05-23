@@ -18,4 +18,5 @@ public class Ubigeo implements Serializable {
     private String departamento;
     private String provincia;
     private String distrito;
+    
 }

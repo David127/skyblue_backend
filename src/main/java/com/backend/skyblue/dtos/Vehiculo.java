@@ -22,4 +22,5 @@ public class Vehiculo  implements Serializable{
     private String color;
     private String tipo;
     private String estado;
+    
 }

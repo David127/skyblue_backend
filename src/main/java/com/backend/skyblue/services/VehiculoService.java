@@ -16,6 +16,7 @@ public class VehiculoService implements CrudService {
     @Autowired
     private VehiculoRepositoy vehiculoRepositoy;
 
+    
     @Override
     public Page<Vehiculo> listarEnPaginas(String estado, Pageable pageable) {
         return  vehiculoRepositoy.listarEnPaginas(estado, pageable);

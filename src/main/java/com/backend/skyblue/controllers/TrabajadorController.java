@@ -59,5 +59,4 @@ public class TrabajadorController {
     return new ResponseEntity<>(salida, HttpStatus.CREATED);
     }
 
-
 }
