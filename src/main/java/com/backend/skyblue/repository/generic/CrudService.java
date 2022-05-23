@@ -12,5 +12,4 @@ public interface CrudService {
     public abstract Optional<?> listarPorId(long id);
     public List<?> listarTodos();
 
-
 }

@@ -16,5 +16,5 @@ public interface TrabajadorRepository  extends JpaRepository <Trabajador,Long> {
             nativeQuery = true
     )
     Page<Trabajador> listarEnPaginas(@Param("estado") String estado, Pageable pageable);
-
+ 
 }
