@@ -1,4 +1,4 @@
-package com.backend.skyblue.dtos;
+package com.backend.skyblue.models;
 
 import lombok.Data;
 
