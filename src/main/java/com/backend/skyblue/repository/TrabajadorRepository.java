@@ -1,6 +1,6 @@
 package com.backend.skyblue.repository;
 
-import com.backend.skyblue.dtos.Trabajador;
+import com.backend.skyblue.models.Trabajador;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

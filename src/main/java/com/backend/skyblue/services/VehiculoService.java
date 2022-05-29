@@ -1,6 +1,6 @@
 package com.backend.skyblue.services;
 
-import com.backend.skyblue.dtos.Vehiculo;
+import com.backend.skyblue.models.Vehiculo;
 import com.backend.skyblue.repository.VehiculoRepositoy;
 import com.backend.skyblue.repository.generic.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
