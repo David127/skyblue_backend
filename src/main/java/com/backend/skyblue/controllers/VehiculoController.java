@@ -1,6 +1,6 @@
 package com.backend.skyblue.controllers;
 
-import com.backend.skyblue.dtos.Vehiculo;
+import com.backend.skyblue.models.Vehiculo;
 import com.backend.skyblue.services.VehiculoService;
 import com.backend.skyblue.utils.SysHttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;

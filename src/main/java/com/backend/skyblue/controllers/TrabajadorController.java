@@ -1,6 +1,6 @@
 package com.backend.skyblue.controllers;
 
-import com.backend.skyblue.dtos.Trabajador;
+import com.backend.skyblue.models.Trabajador;
 import com.backend.skyblue.services.TrabajadorService;
 import com.backend.skyblue.utils.SysHttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +12,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
@@ -36,7 +35,7 @@ public class TrabajadorController {
             trabajadorService.listarEnPaginas(estado,PageRequest.of(page,size));
         return new ResponseEntity(response,HttpStatus.OK);
     }
-    @PostMapping("/registar")
+    @PostMapping("registrar")
     public ResponseEntity<Map<String, Object>> trabajadorRegistar(@RequestBody Trabajador obj){
         Map<String, Object> salida = new HashMap<>();
         try {

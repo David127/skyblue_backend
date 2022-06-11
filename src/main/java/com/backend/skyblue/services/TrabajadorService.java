@@ -1,7 +1,6 @@
 package com.backend.skyblue.services;
 
-import com.backend.skyblue.dtos.Sueldo;
-import com.backend.skyblue.dtos.Trabajador;
+import com.backend.skyblue.models.Trabajador;
 import com.backend.skyblue.repository.TrabajadorRepository;
 import com.backend.skyblue.repository.generic.CrudService;
 import org.springframework.beans.factory.annotation.Autowired;
