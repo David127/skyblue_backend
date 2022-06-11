@@ -23,5 +23,17 @@ public class Sueldo implements Serializable {
     private Double dolares;
     private Double soles;
     private Double total;
-    
+    private Long fkTrabajador;
+
+    @ManyToOne
+    @JoinColumn(name = "trabajador_id")
+    private Trabajador trabajador;
+
+    public Trabajador getTrabajador() {
+        return trabajador;
+    }
+
+    public void setTrabajador(Trabajador trabajador) {
+        this.trabajador = trabajador;
+    }
 }
