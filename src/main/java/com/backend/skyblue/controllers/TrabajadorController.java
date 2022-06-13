@@ -1,6 +1,8 @@
 package com.backend.skyblue.controllers;
 
+import com.backend.skyblue.dto.request.TrabajadorRequestDto;
 import com.backend.skyblue.dto.response.TrabajadorPageResponseDTO;
+import com.backend.skyblue.dto.response.TrabajadorResponseDTO;
 import com.backend.skyblue.mapper.TrabajadorMappers;
 import com.backend.skyblue.models.Trabajador;
 import com.backend.skyblue.services.TrabajadorService;
@@ -40,7 +42,7 @@ public class TrabajadorController {
         return trabajadorService.listarTodos();
     }*/
 
-    @PostMapping("registrar")
+    @PostMapping("registrare")
     public ResponseEntity<Map<String, Object>> trabajadorRegistar(@RequestBody Trabajador obj){
         Map<String, Object> salida = new HashMap<>();
         try {
@@ -90,11 +92,12 @@ public class TrabajadorController {
         return ResponseEntity.ok(trabajadorService.findTrabajadorByFilter(pageable));
     }
 
-     /*   @PostMapping("registrars")
+       @PostMapping("registrar")
     public ResponseEntity<TrabajadorResponseDTO> create(@RequestBody TrabajadorRequestDto request){
         TrabajadorResponseDTO response = trabajadorService.create(request);
+
         return  ResponseEntity.ok(response);
-        }*/
+        }
 
 
 }

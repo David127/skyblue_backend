@@ -1,4 +1,4 @@
-package com.backend.skyblue.dto.response;
+package com.backend.skyblue.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,16 +6,18 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serial;
+import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 @Data
 @Builder
-@AllArgsConstructor
 @NoArgsConstructor
-public class TrabajadorResponseDTO {
+@AllArgsConstructor
+public class TrabajadorRequestDto   implements Serializable {
     @Serial
-    private static final long serialVersionUID = 1L;
-   // private Long id;
+    private static  final long serialVersionUID  = 1L;
+    private Long id;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -30,10 +32,8 @@ public class TrabajadorResponseDTO {
     private String fechaIngreso;
     private String fechaSalida;
     private String observacion;
-//    private String estado;
-    // private UbigeoDTO ubigeo;
-   // private CargoDTO cargo;
-    private Set<SueldoResponseDto> sueldo;
-
-
+    private String estado;
+    //  private UbigeoDTO ubigeo;
+    // private CargoDTO cargo;
+    private Set<SueldoRequestDto> sueldos;
 }

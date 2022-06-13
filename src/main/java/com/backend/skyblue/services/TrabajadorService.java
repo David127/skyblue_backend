@@ -1,6 +1,8 @@
 package com.backend.skyblue.services;
 
+import com.backend.skyblue.dto.request.TrabajadorRequestDto;
 import com.backend.skyblue.dto.response.TrabajadorPageResponseDTO;
+import com.backend.skyblue.dto.response.TrabajadorResponseDTO;
 import com.backend.skyblue.mapper.TrabajadorMappers;
 import com.backend.skyblue.models.Sueldo;
 import com.backend.skyblue.models.Trabajador;
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -24,6 +27,7 @@ public class TrabajadorService  {
 
     private final SueldoService sueldoService;
 
+    private final TrabajadorBuilderService trabajadorBuilderService;
 
     public Page<Trabajador> listarEnPaginas(String estado, Pageable pageable) {
        return trabajadorRepository.listarEnPaginas(estado,pageable);
@@ -35,25 +39,11 @@ public class TrabajadorService  {
     }
 
 
-    public List<Trabajador> listarTodos() {
-        var trabajador = trabajadorRepository.findAll();
-        //var sueldo = sueldoRepository.findAll();
-
-        //var sueldos = sueldoRepository.findAll();
-
-
-
-       return  null;
-    }
 
     public boolean existeTrabajador(Trabajador obj) {
         return  trabajadorRepository.existsById(obj.getId());
     }
 
-    public Trabajador insertar(Trabajador obj){
-
-        return obj;
-    }
 
     public Trabajador actualizar(Trabajador obj){
         if(obj == null)
@@ -73,19 +63,12 @@ public class TrabajadorService  {
 
     @Transactional
     public Trabajador save(Trabajador trabajador){
-
         var trabajadorSaved = trabajadorRepository.saveAndFlush(trabajador);
-        findAndSueldosToTrabajador(trabajadorSaved);
+      // findAndSueldosToTrabajador(trabajadorSaved);
         return trabajadorSaved;
     }
 
 
-
-    @Transactional
-    private void findAndSueldosToTrabajador(Trabajador trabajador) {
-        Set<Sueldo> sueldos = sueldoService.findAllByTrabajadorId(trabajador.getId());
-        trabajador.setSueldo(sueldos);
-    }
 
     public TrabajadorPageResponseDTO findTrabajadorByFilter(Pageable pageable) {
        // Specification<Trabajador> trabajadorEspecificacion =
@@ -93,14 +76,14 @@ public class TrabajadorService  {
         return  TrabajadorMappers.buildTrabajadorPageResponseDto(trabajadorFoud);
     }
 
-
-    /*public TrabajadorResponseDTO create(TrabajadorRequestDto request) {
-        //TrabajadorResponseDTO  trabajadorResponseDTO = findTrabajadorById(request.getId());
-        TrabajadorResponseDTO  trabajadorResponseDTO;
-        trabajadorResponseDTO = createNewTrabajador(request)
+    public TrabajadorResponseDTO create(TrabajadorRequestDto request) {
+        TrabajadorResponseDTO trabajadorResponseD = createNewTrabajador(request);
+        return trabajadorResponseD;
     }
 
     private TrabajadorResponseDTO createNewTrabajador(TrabajadorRequestDto request) {
-        return
-    }*/
+        var trabajador = trabajadorBuilderService.buildNewTrabajador(request);
+        save(trabajador);
+        return  TrabajadorMappers.buildResponseDtoFrontEntity(trabajador);
+    }
 }

@@ -1,5 +1,6 @@
 package com.backend.skyblue.models;
 
+import com.backend.skyblue.dto.request.TrabajadorRequestDto;
 import com.backend.skyblue.mapper.TrabajadorCreateBuilder;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
@@ -38,21 +39,13 @@ public class Trabajador implements Serializable {
     private String sexo;
     private String estadoCivil;
     private String fechaNacimiento;
-    private String fechaIngreso;
-    private String fechaSalida;
     private String observacion;
     private String estado;
-    @CreatedDate
-    private Timestamp createAt;
-    @CreatedDate
-    private Timestamp updateAt;
 
-
-    //@OneToMany(targetEntity = Sueldo.class, cascade = CascadeType.ALL)
-    @OneToMany(mappedBy = "trabajador", cascade = CascadeType.ALL)
-   // @JoinColumn(name = "fk_trabajador",referencedColumnName = "id")
+    @OneToMany(targetEntity = Sueldo.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "trabajador_id",referencedColumnName = "id")
     @JsonBackReference
-    private Set<Sueldo> sueldo;
+    private Set<Sueldo> sueldos;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ubigeo_id")
@@ -62,21 +55,22 @@ public class Trabajador implements Serializable {
     private Cargo cargo;
 
     public  void addSueldos(List<Sueldo> sueldo){
-        if(CollectionUtils.isEmpty(this.sueldo)){
-            this.sueldo = new HashSet<>();
+        if(CollectionUtils.isEmpty(this.sueldos)){
+            this.sueldos = new HashSet<>();
         }
         sueldo.forEach(this::addSueldo);
     }
 
     private void addSueldo(Sueldo s) {
-        if(CollectionUtils.isEmpty(sueldo)){
-            sueldo = new HashSet<>();
+        if(CollectionUtils.isEmpty(sueldos)){
+            sueldos = new HashSet<>();
         }
-        sueldo.add(s);
+        sueldos.add(s);
     }
 
     public static TrabajadorCreateBuilder createBuilder(){
         return new TrabajadorCreateBuilder();
     }
+
 
 }

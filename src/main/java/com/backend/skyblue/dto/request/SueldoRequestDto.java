@@ -15,5 +15,13 @@ import java.io.Serializable;
 public class SueldoRequestDto implements Serializable {
     @Serial
     private static  final long serialVersionUID  = 1L;
+    private Long id;
     private String turno;
+    private Integer dias;
+    private String meses;
+    private String anio;
+    private Double Base;
+    private Double dolares;
+    private Double soles;
+    private Double total;
 }

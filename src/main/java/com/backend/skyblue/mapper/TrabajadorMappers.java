@@ -1,16 +1,21 @@
 package com.backend.skyblue.mapper;
 
+import com.backend.skyblue.dto.request.SueldoRequestDto;
+import com.backend.skyblue.dto.request.TrabajadorRequestDto;
 import com.backend.skyblue.dto.response.TrabajadorPageResponseDTO;
-import com.backend.skyblue.models.Trabajador;
 import com.backend.skyblue.dto.response.TrabajadorResponseDTO;
+import com.backend.skyblue.models.Trabajador;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 public interface TrabajadorMappers {
 
     Integer PAGINATION_OFFSET = 1;
+
+    //listado
     static List<TrabajadorResponseDTO> buildListResponseEntities(
             List<Trabajador> trabajador){
         return trabajador.stream()
@@ -20,13 +25,10 @@ public interface TrabajadorMappers {
     }
 
     static TrabajadorResponseDTO buildResponseDtoFrontEntity(Trabajador trabajador){
-        return buildResponseDTO(trabajador);
+        return  buildResponseDTO(trabajador);
     }
-
-
-
-    static TrabajadorResponseDTO buildResponseDTO(Trabajador trabajador){
-        var trabajadorDto =  TrabajadorResponseDTO.builder()
+    static TrabajadorResponseDTO buildResponseDTO(Trabajador trabajador) {
+          var trabajadorDto =  TrabajadorResponseDTO.builder()
                 .nombre(trabajador.getNombre())
                 .apellidoMaterno(trabajador.getApellidoMaterno())
                 .tipoDocumento(trabajador.getTipoDocumento())
@@ -37,17 +39,14 @@ public interface TrabajadorMappers {
                 .sexo(trabajador.getSexo())
                 .estadoCivil(trabajador.getEstadoCivil())
                 .fechaNacimiento(trabajador.getFechaNacimiento())
-                .fechaIngreso(trabajador.getFechaIngreso())
-                .fechaSalida(trabajador.getFechaSalida())
                 .observacion(trabajador.getObservacion())
-                .estado(trabajador.getEstado())
+
                 .build();
 
         trabajadorDto.setSueldo(
-                SueldoMapper.builSuedoResponseSet(trabajador.getSueldo())
+                SueldoMapper.buildSuedoResponseSet(trabajador.getSueldos())
         );
-
-        return trabajadorDto;
+          return trabajadorDto;
     }
 
     static TrabajadorPageResponseDTO buildTrabajadorPageResponseDto(
@@ -61,5 +60,24 @@ public interface TrabajadorMappers {
     }
 
 
+    static Trabajador buildEntidadFromDto(TrabajadorRequestDto trabajadorRequestDto) {
+        return Trabajador.builder()
+                .id(trabajadorRequestDto.getId())
+                .nombre(trabajadorRequestDto.getNombre())
+                .apellidoPaterno(trabajadorRequestDto.getApellidoPaterno())
+                .apellidoMaterno(trabajadorRequestDto.getApellidoMaterno())
+                .tipoDocumento(trabajadorRequestDto.getTipoDocumento())
+                .nroDocumento(trabajadorRequestDto.getNroDocumento())
+                .telefono(trabajadorRequestDto.getTelefono())
+                .correo(trabajadorRequestDto.getCorreo())
+                .direccion(trabajadorRequestDto.getDireccion())
+                .sexo(trabajadorRequestDto.getSexo())
+                .estadoCivil(trabajadorRequestDto.getEstadoCivil())
+                .fechaNacimiento(trabajadorRequestDto.getFechaNacimiento())
+                .observacion(trabajadorRequestDto.getObservacion())
+                .estado(trabajadorRequestDto.getEstado())
+                .build();
+
+    }
 }
 

@@ -14,11 +14,7 @@ import java.io.Serializable;
 public class SueldoResponseDto implements Serializable {
     private Long id;
     private String turno;
-    private Integer dias;
-    private Integer mesess;
-    private Double horasExtras;
+    private String anio;
+    private String meses;
     private Double Base;
-    private Double dolares;
-    private Double soles;
-    private Double total;
 }

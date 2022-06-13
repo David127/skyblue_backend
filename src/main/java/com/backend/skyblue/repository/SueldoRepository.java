@@ -10,6 +10,6 @@ import java.util.Set;
 @Repository
 public interface SueldoRepository extends JpaRepository<Sueldo,Long> {
 
-    Set<Sueldo> findByFkTrabajador(Long id);
+  //  Set<Sueldo> findByFkTrabajador(Long id);
 
 }
