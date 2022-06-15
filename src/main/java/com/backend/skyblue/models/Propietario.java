@@ -1,23 +1,22 @@
-package com.backend.skyblue.dtos;
+package com.backend.skyblue.models;
 
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
-import java.util.List;
 
+@Table(name = "propietario")
 @Entity
 @Data
-@Table(name = "trabajador")
-public class Trabajador implements Serializable {
+public class Propietario implements  Serializable {
     @Serial
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String apellidoPaterno;
@@ -38,16 +37,5 @@ public class Trabajador implements Serializable {
     private Timestamp createAt;
     @CreatedDate
     private Timestamp updateAt;
-
-    @OneToMany(targetEntity = Sueldo.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "fk_trabajador",referencedColumnName = "id")
-    private List<Sueldo> sueldo;
-
-    @OneToOne
-    @JoinColumn(name = "ubigeo_id")
-    private Ubigeo ubigeo;
-    @OneToOne
-    @JoinColumn(name = "cargo_id")
-    private Cargo cargo;
 
 }
