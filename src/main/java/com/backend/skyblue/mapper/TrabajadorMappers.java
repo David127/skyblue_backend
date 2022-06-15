@@ -29,6 +29,7 @@ public interface TrabajadorMappers {
     }
     static TrabajadorResponseDTO buildResponseDTO(Trabajador trabajador) {
           var trabajadorDto =  TrabajadorResponseDTO.builder()
+                  .id(trabajador.getId())
                 .nombre(trabajador.getNombre())
                 .apellidoMaterno(trabajador.getApellidoMaterno())
                 .tipoDocumento(trabajador.getTipoDocumento())

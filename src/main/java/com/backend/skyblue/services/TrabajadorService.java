@@ -4,7 +4,6 @@ import com.backend.skyblue.dto.request.TrabajadorRequestDto;
 import com.backend.skyblue.dto.response.TrabajadorPageResponseDTO;
 import com.backend.skyblue.dto.response.TrabajadorResponseDTO;
 import com.backend.skyblue.mapper.TrabajadorMappers;
-import com.backend.skyblue.models.Sueldo;
 import com.backend.skyblue.models.Trabajador;
 import com.backend.skyblue.repository.TrabajadorRepository;
 import lombok.AllArgsConstructor;
@@ -14,10 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 
-import java.util.List;
 import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -40,27 +36,28 @@ public class TrabajadorService  {
 
 
 
-    public boolean existeTrabajador(Trabajador obj) {
+    public boolean existeTrabajador(TrabajadorRequestDto obj) {
         return  trabajadorRepository.existsById(obj.getId());
     }
 
 
-    public Trabajador actualizar(Trabajador obj){
+    public TrabajadorResponseDTO actualizar(TrabajadorRequestDto obj){
         if(obj == null)
             throw new IllegalArgumentException ("El objeto Trabajador no puede ser nulo");
-        return  trabajadorRepository.save(obj);
+        return null;
     }
 
-    public Trabajador insertarActualizar(Trabajador obj) {
-
+    public TrabajadorResponseDTO insertarActualizar(TrabajadorRequestDto obj) {
         if(existeTrabajador(obj)){
-            return actualizar(obj);
-        }else{
-            return  save(obj);
+           return actualizar(obj);
+        }else {
+            return create(obj);
         }
-
     }
-
+    public TrabajadorResponseDTO create(TrabajadorRequestDto request) {
+        TrabajadorResponseDTO trabajadorResponseD = createNewTrabajador(request);
+        return trabajadorResponseD;
+    }
     @Transactional
     public Trabajador save(Trabajador trabajador){
         var trabajadorSaved = trabajadorRepository.saveAndFlush(trabajador);
@@ -76,10 +73,7 @@ public class TrabajadorService  {
         return  TrabajadorMappers.buildTrabajadorPageResponseDto(trabajadorFoud);
     }
 
-    public TrabajadorResponseDTO create(TrabajadorRequestDto request) {
-        TrabajadorResponseDTO trabajadorResponseD = createNewTrabajador(request);
-        return trabajadorResponseD;
-    }
+
 
     private TrabajadorResponseDTO createNewTrabajador(TrabajadorRequestDto request) {
         var trabajador = trabajadorBuilderService.buildNewTrabajador(request);
