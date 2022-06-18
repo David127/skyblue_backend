@@ -10,19 +10,20 @@ public class TrabajadorCreateBuilder {
     private Trabajador trabajador;
     private TrabajadorRequestDto trabajadorRequestDto;
 
-    public TrabajadorCreateBuilder listSueldos( Set<SueldoRequestDto> sueldos){
+    public TrabajadorCreateBuilder listSueldos(Set<SueldoRequestDto> sueldos) {
         trabajador.addSueldos(SueldoMapper.buildSueldosList(sueldos));
         return this;
     }
-    public TrabajadorCreateBuilder trabajadorDto(TrabajadorRequestDto trabajadorRequestDto){
+
+    public TrabajadorCreateBuilder trabajadorDto(TrabajadorRequestDto trabajadorRequestDto) {
         this.trabajadorRequestDto = trabajadorRequestDto;
         trabajador = TrabajadorMapper.buildEntidadFromDto(trabajadorRequestDto);
-                return this;
+        return this;
     }
 
 
     public Trabajador build() {
-        return  trabajador;
+        return trabajador;
     }
 
 }

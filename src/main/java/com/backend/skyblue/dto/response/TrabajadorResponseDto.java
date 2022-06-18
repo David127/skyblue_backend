@@ -16,7 +16,7 @@ import java.util.Set;
 public class TrabajadorResponseDto implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-   private Long id;
+    private Long id;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;

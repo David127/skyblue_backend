@@ -8,7 +8,7 @@ import static com.backend.skyblue.mapper.TrabajadorMapper.PAGINATION_OFFSET;
 public interface PaginationMapper {
 
     static PaginationResponseDTO buildPaginationResponseFromPage(
-            Page<?> page){
+            Page<?> page) {
         return PaginationResponseDTO.builder()
                 .totalPages(page.getTotalPages())
                 .totalElements(page.getTotalElements())
@@ -18,7 +18,7 @@ public interface PaginationMapper {
                 .isFirst(page.isFirst())
                 .isLast(page.isLast())
                 .build();
-                
+
     }
-    
+
 }

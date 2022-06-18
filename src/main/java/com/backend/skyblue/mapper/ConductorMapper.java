@@ -3,7 +3,6 @@ package com.backend.skyblue.mapper;
 import com.backend.skyblue.dto.request.ConductorRequestDto;
 import com.backend.skyblue.dto.response.ConductorResponseDto;
 import com.backend.skyblue.models.Conductor;
-import com.backend.skyblue.models.Vehiculo;
 
 public interface ConductorMapper {
     public static ConductorResponseDto buildResponseDto(Conductor conductor) {
@@ -17,8 +16,6 @@ public interface ConductorMapper {
     }
 
     public static Conductor buildRequestDto(ConductorRequestDto conductor) {
-        return Conductor.builder()
-                .id(conductor.getId())
-                .build();
+        return Conductor.builder().id(conductor.getId()).build();
     }
 }

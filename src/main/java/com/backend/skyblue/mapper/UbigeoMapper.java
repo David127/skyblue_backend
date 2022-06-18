@@ -7,12 +7,12 @@ import com.backend.skyblue.models.Ubigeo;
 public interface UbigeoMapper {
     static UbigeoResponseDto builResponseDto(Ubigeo ubigeo) {
 
-      return  UbigeoResponseDto.builder()
-              .id(ubigeo.getId())
-              .departamento(ubigeo.getDepartamento())
-              .provincia(ubigeo.getProvincia())
-              .distrito(ubigeo.getDistrito())
-              .build();
+        return UbigeoResponseDto.builder()
+                .id(ubigeo.getId())
+                .departamento(ubigeo.getDepartamento())
+                .provincia(ubigeo.getProvincia())
+                .distrito(ubigeo.getDistrito())
+                .build();
     }
 
 

@@ -16,7 +16,7 @@ public interface CargoMapper {
     }
 
     static Cargo buildRequestDto(CargoRequestDto cargo) {
-        return  Cargo.builder()
+        return Cargo.builder()
                 .id(cargo.getId())
                 .build();
     }

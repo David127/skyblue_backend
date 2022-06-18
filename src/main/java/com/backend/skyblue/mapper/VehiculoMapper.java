@@ -13,9 +13,10 @@ public interface VehiculoMapper {
                 .placa(vehiculo.getPlaca())
                 .build();
     }
-    public static Vehiculo buildRequestDto(VehiculoRequestDto vehiculo ){
 
-        return  Vehiculo.builder()
+    public static Vehiculo buildRequestDto(VehiculoRequestDto vehiculo) {
+
+        return Vehiculo.builder()
                 .id(vehiculo.getId())
                 .build();
     }

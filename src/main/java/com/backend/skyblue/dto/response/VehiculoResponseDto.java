@@ -15,7 +15,7 @@ public class VehiculoResponseDto implements Serializable {
     @Serial
     private static final long serialVersionUID = 2L;
     @Id
-    private Long id ;
+    private Long id;
     private String placa;
     private String padron;
 }

@@ -14,17 +14,18 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@JsonIgnoreProperties(ignoreUnknown =true)
+@JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class PaginationResponseDTO implements Serializable {
-    @Serial private static  final  long serialVersionUID = -1L;
+	@Serial
+	private static final long serialVersionUID = -1L;
 
-    Integer totalPages;
-    Long totalElements;
-    Integer page;
-    Integer pageSize;
-    Integer numberOfElements;
-    Boolean isLast;
-    Boolean isFirst;
+	Integer totalPages;
+	Long totalElements;
+	Integer page;
+	Integer pageSize;
+	Integer numberOfElements;
+	Boolean isLast;
+	Boolean isFirst;
 
 }

@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
+
 @Entity
 @Getter
 @Setter
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "cargo")
-public class Cargo  implements Serializable {
+public class Cargo implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     @Id
@@ -22,5 +23,4 @@ public class Cargo  implements Serializable {
     private String descripcion;
     private String responsable;
 
-    
 }

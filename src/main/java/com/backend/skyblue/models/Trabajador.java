@@ -1,8 +1,10 @@
 package com.backend.skyblue.models;
+
 import com.backend.skyblue.mapper.TrabajadorCreateBuilder;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 import org.springframework.util.CollectionUtils;
+
 import javax.persistence.*;
 import javax.validation.Valid;
 import java.io.Serial;
@@ -40,7 +42,7 @@ public class Trabajador implements Serializable {
 
     @Valid
     @OneToMany(targetEntity = Sueldo.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "trabajador_id",referencedColumnName = "id")
+    @JoinColumn(name = "trabajador_id", referencedColumnName = "id")
     @JsonBackReference
     private Set<Sueldo> sueldos;
 
@@ -51,21 +53,21 @@ public class Trabajador implements Serializable {
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
-    public  void addSueldos(List<Sueldo> sueldo){
-        if(CollectionUtils.isEmpty(this.sueldos)){
+    public void addSueldos(List<Sueldo> sueldo) {
+        if (CollectionUtils.isEmpty(this.sueldos)) {
             this.sueldos = new HashSet<>();
         }
         sueldo.forEach(this::addSueldo);
     }
 
     private void addSueldo(Sueldo s) {
-        if(CollectionUtils.isEmpty(sueldos)){
+        if (CollectionUtils.isEmpty(sueldos)) {
             sueldos = new HashSet<>();
         }
         sueldos.add(s);
     }
 
-    public static TrabajadorCreateBuilder createBuilder(){
+    public static TrabajadorCreateBuilder createBuilder() {
         return new TrabajadorCreateBuilder();
     }
 

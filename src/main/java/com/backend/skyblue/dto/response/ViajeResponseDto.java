@@ -15,8 +15,8 @@ public class ViajeResponseDto implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
     private String horaRegistro;
-    private String horaSalida;
     private String horaLlegada;
+    private String horaSalida;
     private Double nroVueltas;
     private String fecha;
     private String terminal;

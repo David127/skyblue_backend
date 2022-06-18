@@ -7,13 +7,14 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
+
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ConductorResponseDto implements Serializable {
     @Serial
-    private static  final long serialVersionUID  = 1L;
+    private static final long serialVersionUID = 1L;
     private Long id;
     private String nombre;
     private String apellidoPaterno;
