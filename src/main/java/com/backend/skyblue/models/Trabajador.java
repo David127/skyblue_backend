@@ -1,16 +1,12 @@
 package com.backend.skyblue.models;
-
-import com.backend.skyblue.dto.request.TrabajadorRequestDto;
 import com.backend.skyblue.mapper.TrabajadorCreateBuilder;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.util.CollectionUtils;
-
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.io.Serial;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,6 +38,7 @@ public class Trabajador implements Serializable {
     private String observacion;
     private String estado;
 
+    @Valid
     @OneToMany(targetEntity = Sueldo.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "trabajador_id",referencedColumnName = "id")
     @JsonBackReference

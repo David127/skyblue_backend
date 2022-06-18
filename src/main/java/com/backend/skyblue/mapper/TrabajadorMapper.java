@@ -1,34 +1,28 @@
 package com.backend.skyblue.mapper;
-
-import com.backend.skyblue.dto.request.SueldoRequestDto;
 import com.backend.skyblue.dto.request.TrabajadorRequestDto;
-import com.backend.skyblue.dto.response.TrabajadorPageResponseDTO;
-import com.backend.skyblue.dto.response.TrabajadorResponseDTO;
+import com.backend.skyblue.dto.response.PageResponseDto;
+import com.backend.skyblue.dto.response.TrabajadorResponseDto;
 import com.backend.skyblue.models.Trabajador;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
-import java.util.Set;
+
 import java.util.stream.Collectors;
-
-public interface TrabajadorMappers {
-
+public interface TrabajadorMapper {
     Integer PAGINATION_OFFSET = 1;
 
     //listado
-    static List<TrabajadorResponseDTO> buildListResponseEntities(
+    static List<TrabajadorResponseDto> buildListResponseEntities(
             List<Trabajador> trabajador){
         return trabajador.stream()
-                .map(tb-> TrabajadorMappers.buildResponseDtoFrontEntity(tb))
+                .map(tb-> TrabajadorMapper.buildResponseDtoFrontEntity(tb))
                 .collect(Collectors.toList());
-
     }
-
-    static TrabajadorResponseDTO buildResponseDtoFrontEntity(Trabajador trabajador){
+    static TrabajadorResponseDto buildResponseDtoFrontEntity(Trabajador trabajador){
         return  buildResponseDTO(trabajador);
     }
-    static TrabajadorResponseDTO buildResponseDTO(Trabajador trabajador) {
-          var trabajadorDto =  TrabajadorResponseDTO.builder()
+    static TrabajadorResponseDto buildResponseDTO(Trabajador trabajador) {
+          var trabajadorDto =  TrabajadorResponseDto.builder()
                   .id(trabajador.getId())
                 .nombre(trabajador.getNombre())
                 .apellidoMaterno(trabajador.getApellidoMaterno())
@@ -41,22 +35,23 @@ public interface TrabajadorMappers {
                 .estadoCivil(trabajador.getEstadoCivil())
                 .fechaNacimiento(trabajador.getFechaNacimiento())
                 .observacion(trabajador.getObservacion())
-
+                  .cargo(CargoMapper.buildResponseDto(trabajador.getCargo()))
+                  .ubigeo(UbigeoMapper.builResponseDto(trabajador.getUbigeo()))
                 .build();
 
-        trabajadorDto.setSueldo(
+        trabajadorDto.setSueldos(
                 SueldoMapper.buildSuedoResponseSet(trabajador.getSueldos())
         );
           return trabajadorDto;
     }
 
-    static TrabajadorPageResponseDTO buildTrabajadorPageResponseDto(
+    static PageResponseDto buildTrabajadorPageResponseDto(
             Page<Trabajador> trabajadorPage){
-        var trabajadores = TrabajadorMappers.buildListResponseEntities(trabajadorPage.getContent());
+        var trabajadores = TrabajadorMapper.buildListResponseEntities(trabajadorPage.getContent());
 
-        return TrabajadorPageResponseDTO.builder().
-                trabajadores(trabajadores)
-                .pagination(PaginationMapper.buildPaginationResponseFromTrabajadorPage(trabajadorPage))
+        return PageResponseDto.builder().
+                data(trabajadores)
+                .pagination(PaginationMapper.buildPaginationResponseFromPage(trabajadorPage))
                 .build();
     }
 
@@ -77,6 +72,8 @@ public interface TrabajadorMappers {
                 .fechaNacimiento(trabajadorRequestDto.getFechaNacimiento())
                 .observacion(trabajadorRequestDto.getObservacion())
                 .estado(trabajadorRequestDto.getEstado())
+                .cargo(CargoMapper.buildRequestDto(trabajadorRequestDto.getCargo()))
+                .ubigeo(UbigeoMapper.buildRequestDto(trabajadorRequestDto.getUbigeo()))
                 .build();
 
     }

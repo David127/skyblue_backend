@@ -1,12 +1,16 @@
 package com.backend.skyblue.models;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-@Data
 @Entity
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "cargo")
 public class Cargo  implements Serializable {
     @Serial

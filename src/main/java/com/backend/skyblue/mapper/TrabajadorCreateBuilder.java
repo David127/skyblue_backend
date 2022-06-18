@@ -4,8 +4,6 @@ import com.backend.skyblue.dto.request.SueldoRequestDto;
 import com.backend.skyblue.dto.request.TrabajadorRequestDto;
 import com.backend.skyblue.models.Trabajador;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
 public class TrabajadorCreateBuilder {
@@ -18,7 +16,7 @@ public class TrabajadorCreateBuilder {
     }
     public TrabajadorCreateBuilder trabajadorDto(TrabajadorRequestDto trabajadorRequestDto){
         this.trabajadorRequestDto = trabajadorRequestDto;
-        trabajador = TrabajadorMappers.buildEntidadFromDto(trabajadorRequestDto);
+        trabajador = TrabajadorMapper.buildEntidadFromDto(trabajadorRequestDto);
                 return this;
     }
 

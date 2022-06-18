@@ -1,26 +1,21 @@
-package com.backend.skyblue.models;
+package com.backend.skyblue.dto.response;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
-
-@Entity
-@Getter
-@Setter
+@Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "ubigeo")
-public class Ubigeo implements Serializable {
+public class UbigeoResponseDto implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String departamento;
     private String provincia;
     private String distrito;
-    
 }

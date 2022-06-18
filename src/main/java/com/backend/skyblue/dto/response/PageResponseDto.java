@@ -18,10 +18,10 @@ import java.util.List;
 @NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class TrabajadorPageResponseDTO implements Serializable {
+public class PageResponseDto implements Serializable {
     @Serial private static  final  long serialVersionUID = -1313;
 
-    private List<TrabajadorResponseDTO> trabajadores;
+    private List<?> data;
 
     private PaginationResponseDTO pagination;
 

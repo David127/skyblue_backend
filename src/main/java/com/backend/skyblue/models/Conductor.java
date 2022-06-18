@@ -1,21 +1,24 @@
-package com.backend.skyblue.dto.response;
+package com.backend.skyblue.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
+import javax.persistence.*;
 import java.io.Serial;
-import java.util.Set;
+import java.io.Serializable;
 
-@Data
+@Entity
+@Getter
+@Setter
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrabajadorResponseDTO {
+@Table(name = "conductor")
+public class Conductor  implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-   private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -27,13 +30,6 @@ public class TrabajadorResponseDTO {
     private String sexo;
     private String estadoCivil;
     private String fechaNacimiento;
-    private String fechaIngreso;
-    private String fechaSalida;
     private String observacion;
-//    private String estado;
-    // private UbigeoDTO ubigeo;
-   // private CargoDTO cargo;
-    private Set<SueldoResponseDto> sueldo;
-
-
+    private String estado;
 }

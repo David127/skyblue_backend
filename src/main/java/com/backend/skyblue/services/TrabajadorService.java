@@ -1,9 +1,9 @@
 package com.backend.skyblue.services;
 
 import com.backend.skyblue.dto.request.TrabajadorRequestDto;
-import com.backend.skyblue.dto.response.TrabajadorPageResponseDTO;
-import com.backend.skyblue.dto.response.TrabajadorResponseDTO;
-import com.backend.skyblue.mapper.TrabajadorMappers;
+import com.backend.skyblue.dto.response.PageResponseDto;
+import com.backend.skyblue.dto.response.TrabajadorResponseDto;
+import com.backend.skyblue.mapper.TrabajadorMapper;
 import com.backend.skyblue.models.Trabajador;
 import com.backend.skyblue.repository.TrabajadorRepository;
 import lombok.AllArgsConstructor;
@@ -40,22 +40,15 @@ public class TrabajadorService  {
         return  trabajadorRepository.existsById(obj.getId());
     }
 
-
-    public TrabajadorResponseDTO actualizar(TrabajadorRequestDto obj){
-        if(obj == null)
-            throw new IllegalArgumentException ("El objeto Trabajador no puede ser nulo");
-        return null;
-    }
-
-    public TrabajadorResponseDTO insertarActualizar(TrabajadorRequestDto obj) {
+    public TrabajadorResponseDto insertarActualizar(TrabajadorRequestDto obj) {
         if(existeTrabajador(obj)){
            return actualizar(obj);
         }else {
             return create(obj);
         }
     }
-    public TrabajadorResponseDTO create(TrabajadorRequestDto request) {
-        TrabajadorResponseDTO trabajadorResponseD = createNewTrabajador(request);
+    public TrabajadorResponseDto create(TrabajadorRequestDto request) {
+        TrabajadorResponseDto trabajadorResponseD = createNewTrabajador(request);
         return trabajadorResponseD;
     }
     @Transactional
@@ -65,19 +58,27 @@ public class TrabajadorService  {
         return trabajadorSaved;
     }
 
+    public TrabajadorResponseDto actualizar(TrabajadorRequestDto request) {
+        if(request == null)
+            throw new IllegalArgumentException ("El objeto Trabajador no puede ser nulo");
+        if(request.getId()== null)
+            throw new IllegalArgumentException ("El id no puede ser nulo");
+        TrabajadorResponseDto trabajadorResponseD = createNewTrabajador(request);
+        return trabajadorResponseD;
+    }
 
 
-    public TrabajadorPageResponseDTO findTrabajadorByFilter(Pageable pageable) {
+    public PageResponseDto findTrabajadorByFilter(Pageable pageable) {
        // Specification<Trabajador> trabajadorEspecificacion =
         Page<Trabajador>  trabajadorFoud =  trabajadorRepository.findAll(pageable);
-        return  TrabajadorMappers.buildTrabajadorPageResponseDto(trabajadorFoud);
+        return  TrabajadorMapper.buildTrabajadorPageResponseDto(trabajadorFoud);
     }
 
 
 
-    private TrabajadorResponseDTO createNewTrabajador(TrabajadorRequestDto request) {
+    private TrabajadorResponseDto createNewTrabajador(TrabajadorRequestDto request) {
         var trabajador = trabajadorBuilderService.buildNewTrabajador(request);
         save(trabajador);
-        return  TrabajadorMappers.buildResponseDtoFrontEntity(trabajador);
+        return  TrabajadorMapper.buildResponseDtoFrontEntity(trabajador);
     }
 }
