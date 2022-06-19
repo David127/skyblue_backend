@@ -19,4 +19,20 @@ public class ConductorResponseDto implements Serializable {
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
+    private String tipoDocumento;
+    private String nroDocumento;
+    private String telefono;
+    private String correo;
+    private String direccion;
+    private String sexo;
+    private String estadoCivil;
+    private String fechaNacimiento;
+    private String observacion;
+    private String estado;
+    private String nroLicenciaCorrelativo;
+    private String claseCategoria;
+    private String estadoLicencia;
+    private String fechaExpedicion;
+    private String fechaRevalidacion;
+    private String restricciones;
 }

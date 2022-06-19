@@ -1,22 +1,28 @@
 package com.backend.skyblue.models;
 
-import lombok.Data;
+import com.backend.skyblue.mapper.ConductorCreateBuilder;
+import com.backend.skyblue.mapper.PropietarioCreateBuilder;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Table(name = "propietario")
-@Entity
 @Data
+@Entity
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "propietario")
 public class Propietario implements Serializable {
     @Serial
     private static final long serialVersionUID = 2L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nombre;
     private String apellidoPaterno;
@@ -37,5 +43,9 @@ public class Propietario implements Serializable {
     private Timestamp createAt;
     @CreatedDate
     private Timestamp updateAt;
+
+    public static PropietarioCreateBuilder createBuilder() {
+        return new PropietarioCreateBuilder();
+    }
 
 }
