@@ -54,7 +54,7 @@ public class TrabajadorController {
 	}
 
 
-	@PostMapping(path = "actualizar")
+	@PutMapping(path = "actualizar")
 	public ResponseEntity<Map<String, Object>> actualizar(@Valid @RequestBody TrabajadorRequestDto request) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
