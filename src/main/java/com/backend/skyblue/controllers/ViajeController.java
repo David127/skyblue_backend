@@ -53,7 +53,7 @@ public class ViajeController {
 		return new ResponseEntity<>(salida, HttpStatus.CREATED);
 	}
 
-	@PostMapping(path = "actualizar")
+	@PutMapping(path = "actualizar")
 	public ResponseEntity<Map<String, Object>> actualizar(@Valid @RequestBody ViajeRequestDto request) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
@@ -62,7 +62,7 @@ public class ViajeController {
 			ViajeResponseDto objSalida = viajesService.insertarActualizar(request);
 			SysHttpResponse response = new SysHttpResponse(HttpStatus.OK.value(), "Actualizado Exitosamente", request.getTerminal());
 			if(objSalida == null)
-				throw  new Exception("No se pudo actuliazr el viaje");
+				throw  new Exception("No se pudo actualizar el viaje");
 			salida.put("data",response);
 		} catch (Exception e) {
 			SysHttpResponse response = new SysHttpResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), null);

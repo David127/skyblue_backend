@@ -1,5 +1,6 @@
 package com.backend.skyblue.models;
 
+import com.backend.skyblue.mapper.ConductorCreateBuilder;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,4 +33,14 @@ public class Conductor implements Serializable {
 	private String fechaNacimiento;
 	private String observacion;
 	private String estado;
+	private String nroLicenciaCorrelativo;
+	private String claseCategoria;
+	private String estadoLicencia;
+	private String fechaExpedicion;
+	private String fechaRevalidacion;
+	private String restricciones;
+
+	public static ConductorCreateBuilder createBuilder() {
+		return new ConductorCreateBuilder();
+	}
 }
