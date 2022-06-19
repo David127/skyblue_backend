@@ -11,13 +11,13 @@ import java.util.stream.Collectors;
 
 public interface VehiculoMapper {
 	Integer PAGINATION_OFFSET = 1;
+
 	static VehiculoResponseDto buildResponseDto(Vehiculo vehiculo) {
 
 		return VehiculoResponseDto.builder()
 				.id(vehiculo.getId())
 				.padron(vehiculo.getPadron())
 				.placa(vehiculo.getPlaca())
-
 				.clase(vehiculo.getClase())
 				.marca(vehiculo.getMarca())
 				.modelo(vehiculo.getModelo())
