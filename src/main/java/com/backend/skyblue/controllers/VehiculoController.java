@@ -18,25 +18,24 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/vehiculo")
 public class VehiculoController {
 
-    @Autowired
-    private VehiculoService vehiculoService;
+	@Autowired
+	private VehiculoService vehiculoService;
 
-    @PostMapping( path = "/listar",
-    consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
-    )
-    ResponseEntity<Page<Vehiculo>> vehiculoListar(
-            @RequestParam(defaultValue = "activo") String estado,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(defaultValue = "true") boolean asc){
+	@PostMapping(path = "/listar",
+			consumes = {MediaType.APPLICATION_FORM_URLENCODED_VALUE}
+	)
+	ResponseEntity<Page<Vehiculo>> vehiculoListar(
+			@RequestParam(defaultValue = "activo") String estado,
+			@RequestParam(defaultValue = "0") int page,
+			@RequestParam(defaultValue = "10") int size,
+			@RequestParam(defaultValue = "true") boolean asc) {
 
-        Page<Vehiculo> listVehiculos = vehiculoService.listarEnPaginas( estado, PageRequest.of(page, size ));
-        SysHttpResponse response = new SysHttpResponse(HttpStatus.OK.value(), "Listado exitoso",listVehiculos);
-        if(!asc)
-            vehiculoService.listarEnPaginas( estado, PageRequest.of(page, size));
-            
-        return  new ResponseEntity( response, HttpStatus.OK);
-    }
+		Page<Vehiculo> listVehiculos = vehiculoService.listarEnPaginas(estado, PageRequest.of(page, size));
+		SysHttpResponse response = new SysHttpResponse(HttpStatus.OK.value(), "Listado exitoso", listVehiculos);
+		if (!asc)
+			vehiculoService.listarEnPaginas(estado, PageRequest.of(page, size));
 
-    
+		return new ResponseEntity(response, HttpStatus.OK);
+	}
+
 }

@@ -1,22 +1,21 @@
-package com.backend.skyblue.models;
+package com.backend.skyblue.dto.response;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
-import org.springframework.data.annotation.CreatedDate;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.io.Serial;
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.util.Set;
 
-@Table(name = "propietario")
-@Entity
 @Data
-public class Propietario implements Serializable {
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+public class TrabajadorResponseDto implements Serializable {
     @Serial
-    private static final long serialVersionUID = 2L;
-    @Id
+    private static final long serialVersionUID = 1L;
     private Long id;
     private String nombre;
     private String apellidoPaterno;
@@ -33,9 +32,9 @@ public class Propietario implements Serializable {
     private String fechaSalida;
     private String observacion;
     private String estado;
-    @CreatedDate
-    private Timestamp createAt;
-    @CreatedDate
-    private Timestamp updateAt;
+    private UbigeoResponseDto ubigeo;
+    private CargoResponseDto cargo;
+    private Set<SueldoResponseDto> sueldos;
+
 
 }

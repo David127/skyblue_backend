@@ -1,67 +1,68 @@
 package com.backend.skyblue.services;
 
+import com.backend.skyblue.dto.common.PageResponseDto;
+import com.backend.skyblue.dto.request.TrabajadorRequestDto;
+import com.backend.skyblue.dto.response.TrabajadorResponseDto;
+import com.backend.skyblue.mapper.TrabajadorMapper;
 import com.backend.skyblue.models.Trabajador;
 import com.backend.skyblue.repository.TrabajadorRepository;
-import com.backend.skyblue.repository.generic.CrudService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import java.util.List;
-import java.util.Optional;
-
 @Service
-@Transactional
-public class TrabajadorService implements CrudService {
-    @Autowired
-    TrabajadorRepository trabajadorRepository;
-    @PersistenceContext
-    private EntityManager entityManager;
+@AllArgsConstructor
+public class TrabajadorService {
+    private final TrabajadorRepository trabajadorRepository;
 
-    @Override
-    public Page<Trabajador> listarEnPaginas(String estado, Pageable pageable) {
-        return trabajadorRepository.listarEnPaginas(estado,pageable);
+    private final SueldoService sueldoService;
+
+    private final TrabajadorBuilderService trabajadorBuilderService;
+
+
+    public boolean existeTrabajador(TrabajadorRequestDto obj) {
+        return trabajadorRepository.existsById(obj.getId());
     }
 
-    @Override
-    public Optional<Trabajador> listarPorId(long id) {
-        return trabajadorRepository.findById(id);
-    }
-
-    @Override
-    public List<Trabajador> listarTodos() {
-        return trabajadorRepository.findAll();
-    }
-
-    public boolean existeTrabajador(Trabajador obj) {
-        return  trabajadorRepository.existsById(obj.getId());
-    }
-
-    public Trabajador insertar(Trabajador obj){
-        if(obj == null)
-            throw new IllegalArgumentException ("El objeto Trabajador no puede ser nulo");
-
-        return trabajadorRepository.save(obj);
-    }
-
-    public Trabajador actualizar(Trabajador obj){
-        return  trabajadorRepository.save(obj);
-    }
-
-    public Trabajador insertarActualizar(Trabajador obj) {
-
-        if(existeTrabajador(obj)){
+    public TrabajadorResponseDto insertarActualizar(TrabajadorRequestDto obj) {
+        if (existeTrabajador(obj))
             return actualizar(obj);
-        }else{
-            return  insertar(obj);
-        }
+        return create(obj);
 
     }
 
+    private TrabajadorResponseDto create(TrabajadorRequestDto request) {
+        TrabajadorResponseDto trabajadorResponseD = createNewTrabajador(request);
+        return trabajadorResponseD;
+    }
 
+    @Transactional
+    private Trabajador save(Trabajador trabajador) {
+        var trabajadorSaved = trabajadorRepository.saveAndFlush(trabajador);
+        // findAndSueldosToTrabajador(trabajadorSaved);
+        return trabajadorSaved;
+    }
+
+    public TrabajadorResponseDto actualizar(TrabajadorRequestDto request) {
+        if (request == null)
+            throw new IllegalArgumentException("El objeto Trabajador no puede ser nulo");
+        if (request.getId() == null)
+            throw new IllegalArgumentException("El id no puede ser nulo");
+        TrabajadorResponseDto trabajadorResponseD = createNewTrabajador(request);
+        return trabajadorResponseD;
+    }
+
+    public PageResponseDto listarTrabajadorEnPaginas(Pageable pageable) {
+        // Specification<Trabajador> trabajadorEspecificacion =
+        Page<Trabajador> trabajadorFound = trabajadorRepository.findAll(pageable);
+        return TrabajadorMapper.buildTrabajadorPageResponseDto(trabajadorFound);
+    }
+
+    private TrabajadorResponseDto createNewTrabajador(TrabajadorRequestDto request) {
+        var trabajador = trabajadorBuilderService.buildNewTrabajador(request);
+        save(trabajador);
+        return TrabajadorMapper.buildResponseDtoFrontEntity(trabajador);
+    }
 }

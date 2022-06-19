@@ -1,15 +1,18 @@
 package com.backend.skyblue.models;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.List;
-
-@Table(name = "vehiculo")
 @Entity
-@Data
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "vehiculo")
 public class Vehiculo  implements Serializable{
     @Serial
     private static final long serialVersionUID = 2L;
@@ -40,11 +43,11 @@ public class Vehiculo  implements Serializable{
     private Double cargaUtil;
     private Integer nroEjes;
     private Double kilomentraje;
-
+/*
     @OneToMany(targetEntity = Ruta.class, cascade = CascadeType.ALL)
     @JoinColumn(name = "fk_ruta",referencedColumnName = "id")
     List<Propietario> propietarios;
-    private String estado;
+    private String estado;*/
 
     @OneToOne
     @JoinColumn(name = "ruta_id")
