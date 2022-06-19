@@ -16,4 +16,7 @@ public class CargoRequestDto implements Serializable {
     @Serial
     private static  final long serialVersionUID  = 1L;
     private Long id;
+    private String nombre;
+    private String descripcion;
+    private String responsable;
 }
