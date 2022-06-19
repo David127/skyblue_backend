@@ -1,5 +1,6 @@
 package com.backend.skyblue.models;
 
+import com.backend.skyblue.mapper.CargoCreateBuilder;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,4 +24,7 @@ public class Cargo implements Serializable {
     private String descripcion;
     private String responsable;
 
+	public static CargoCreateBuilder createBuilder() {
+		return new CargoCreateBuilder();
+	}
 }
