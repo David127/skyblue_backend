@@ -1,5 +1,6 @@
 package com.backend.skyblue.models;
 
+import com.backend.skyblue.mapper.VehiculoCreateBuilder;
 import lombok.*;
 
 import javax.persistence.*;
@@ -17,6 +18,7 @@ public class Vehiculo  implements Serializable{
     @Serial
     private static final long serialVersionUID = 2L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id ;
     private String placa;
     private String padron;
@@ -53,4 +55,7 @@ public class Vehiculo  implements Serializable{
     @JoinColumn(name = "ruta_id")
     private Ruta ruta;
 
+    public static VehiculoCreateBuilder createBuilder() {
+        return new VehiculoCreateBuilder();
+    }
 }
