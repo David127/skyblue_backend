@@ -13,6 +13,7 @@ public class Empresa implements Serializable {
 	@Serial
 	private static final long serialVersionUID = 2L;
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String ruc;
 	private String nombre;
@@ -23,4 +24,7 @@ public class Empresa implements Serializable {
 	@OneToOne
 	@JoinColumn(name = "ubigeo_id")
 	private Ubigeo ubigeo;
+	@OneToOne
+	@JoinColumn(name = "ruta_id")
+	private Ruta ruta;
 }

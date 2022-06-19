@@ -5,7 +5,7 @@ import com.backend.skyblue.dto.response.ConductorResponseDto;
 import com.backend.skyblue.models.Conductor;
 
 public interface ConductorMapper {
-    public static ConductorResponseDto buildResponseDto(Conductor conductor) {
+     static ConductorResponseDto buildResponseDto(Conductor conductor) {
 
         return ConductorResponseDto.builder()
                 .id(conductor.getId())
@@ -15,7 +15,7 @@ public interface ConductorMapper {
                 .build();
     }
 
-    public static Conductor buildRequestDto(ConductorRequestDto conductor) {
+     static Conductor buildRequestDto(ConductorRequestDto conductor) {
         return Conductor.builder().id(conductor.getId()).build();
     }
 }
