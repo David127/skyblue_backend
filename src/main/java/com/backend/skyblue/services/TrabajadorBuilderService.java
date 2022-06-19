@@ -8,11 +8,11 @@ import org.springframework.stereotype.Service;
 @Service
 @AllArgsConstructor
 public class TrabajadorBuilderService {
-    public Trabajador buildNewTrabajador(TrabajadorRequestDto trabajadorRequestDto){
+    public Trabajador buildNewTrabajador(TrabajadorRequestDto trabajadorRequestDto) {
         var sueldos = trabajadorRequestDto.getSueldos();
 
-       return  Trabajador.createBuilder()
-               .trabajadorDto(trabajadorRequestDto)
+        return Trabajador.createBuilder()
+                .trabajadorDto(trabajadorRequestDto)
                 .listSueldos(sueldos)
                 .build();
 

@@ -6,16 +6,17 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.util.Set;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TrabajadorResponseDTO {
+public class TrabajadorResponseDto implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
-   private Long id;
+    private Long id;
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
@@ -30,10 +31,10 @@ public class TrabajadorResponseDTO {
     private String fechaIngreso;
     private String fechaSalida;
     private String observacion;
-//    private String estado;
-    // private UbigeoDTO ubigeo;
-   // private CargoDTO cargo;
-    private Set<SueldoResponseDto> sueldo;
+    private String estado;
+    private UbigeoResponseDto ubigeo;
+    private CargoResponseDto cargo;
+    private Set<SueldoResponseDto> sueldos;
 
 
 }

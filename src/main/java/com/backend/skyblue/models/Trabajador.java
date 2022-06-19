@@ -1,16 +1,14 @@
 package com.backend.skyblue.models;
 
-import com.backend.skyblue.dto.request.TrabajadorRequestDto;
 import com.backend.skyblue.mapper.TrabajadorCreateBuilder;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
 import org.springframework.util.CollectionUtils;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import java.io.Serial;
 import java.io.Serializable;
-import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -42,8 +40,9 @@ public class Trabajador implements Serializable {
     private String observacion;
     private String estado;
 
+    @Valid
     @OneToMany(targetEntity = Sueldo.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "trabajador_id",referencedColumnName = "id")
+    @JoinColumn(name = "trabajador_id", referencedColumnName = "id")
     @JsonBackReference
     private Set<Sueldo> sueldos;
 
@@ -54,21 +53,21 @@ public class Trabajador implements Serializable {
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
-    public  void addSueldos(List<Sueldo> sueldo){
-        if(CollectionUtils.isEmpty(this.sueldos)){
+    public void addSueldos(List<Sueldo> sueldo) {
+        if (CollectionUtils.isEmpty(this.sueldos)) {
             this.sueldos = new HashSet<>();
         }
         sueldo.forEach(this::addSueldo);
     }
 
     private void addSueldo(Sueldo s) {
-        if(CollectionUtils.isEmpty(sueldos)){
+        if (CollectionUtils.isEmpty(sueldos)) {
             sueldos = new HashSet<>();
         }
         sueldos.add(s);
     }
 
-    public static TrabajadorCreateBuilder createBuilder(){
+    public static TrabajadorCreateBuilder createBuilder() {
         return new TrabajadorCreateBuilder();
     }
 
