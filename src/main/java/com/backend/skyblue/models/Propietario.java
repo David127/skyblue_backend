@@ -13,7 +13,7 @@ import java.sql.Timestamp;
 @Table(name = "propietario")
 @Entity
 @Data
-public class Propietario implements  Serializable {
+public class Propietario implements Serializable {
     @Serial
     private static final long serialVersionUID = 2L;
     @Id

@@ -10,12 +10,12 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface TrabajadorRepository  extends JpaRepository <Trabajador,Long>, JpaSpecificationExecutor<Trabajador> {
+public interface TrabajadorRepository extends JpaRepository<Trabajador, Long>, JpaSpecificationExecutor<Trabajador> {
 
-    @Query(
-            value = "SELECT * FROM trabajador t WHERE t.estado LIKE :estado",
-            nativeQuery = true
-    )
-    Page<Trabajador> listarEnPaginas(@Param("estado") String estado, Pageable pageable);
- 
+	@Query(
+			value = "SELECT * FROM trabajador t WHERE t.estado LIKE :estado",
+			nativeQuery = true
+	)
+	Page<Trabajador> listarEnPaginas(@Param("estado") String estado, Pageable pageable);
+
 }
