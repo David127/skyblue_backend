@@ -1,5 +1,6 @@
 package com.backend.skyblue.models;
 
+import com.backend.skyblue.mapper.ViajeCreateBuilder;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,4 +33,8 @@ public class Viaje implements Serializable {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "conductor_id")
     private Conductor conductor;
+
+	public static ViajeCreateBuilder createBuilder() {
+        return new ViajeCreateBuilder();
+	}
 }

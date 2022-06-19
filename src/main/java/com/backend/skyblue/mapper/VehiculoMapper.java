@@ -5,6 +5,7 @@ import com.backend.skyblue.dto.response.VehiculoResponseDto;
 import com.backend.skyblue.models.Vehiculo;
 
 public interface VehiculoMapper {
+    Integer PAGINATION_OFFSET = 1;
     public static VehiculoResponseDto buildResponseDto(Vehiculo vehiculo) {
 
         return VehiculoResponseDto.builder()

@@ -30,6 +30,9 @@ public interface ViajeMapper {
                 .horaRegistro(viajeRequestDto.getHoraRegistro())
                 .horaSalida(viajeRequestDto.getHoraSalida())
                 .horaLlegada(viajeRequestDto.getHoraLlegada())
+                .fecha(viajeRequestDto.getFecha())
+                .terminal(viajeRequestDto.getTerminal())
+                .nroVueltas(viajeRequestDto.getNroVueltas())
                 .conductor(ConductorMapper.buildRequestDto(viajeRequestDto.getConductor()))
                 .vehiculo(VehiculoMapper.buildRequestDto(viajeRequestDto.getVehiculo()))
                 .build();
@@ -51,6 +54,5 @@ public interface ViajeMapper {
                 .map(vjs -> ViajeMapper.buildResponseDto(vjs))
                 .collect(Collectors.toList());
     }
-
 
 }

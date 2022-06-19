@@ -27,20 +27,19 @@ public class TrabajadorService {
     }
 
     public TrabajadorResponseDto insertarActualizar(TrabajadorRequestDto obj) {
-        if (existeTrabajador(obj)) {
+        if (existeTrabajador(obj))
             return actualizar(obj);
-        } else {
-            return create(obj);
-        }
+        return create(obj);
+
     }
 
-    public TrabajadorResponseDto create(TrabajadorRequestDto request) {
+    private TrabajadorResponseDto create(TrabajadorRequestDto request) {
         TrabajadorResponseDto trabajadorResponseD = createNewTrabajador(request);
         return trabajadorResponseD;
     }
 
     @Transactional
-    public Trabajador save(Trabajador trabajador) {
+    private Trabajador save(Trabajador trabajador) {
         var trabajadorSaved = trabajadorRepository.saveAndFlush(trabajador);
         // findAndSueldosToTrabajador(trabajadorSaved);
         return trabajadorSaved;

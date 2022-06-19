@@ -34,7 +34,7 @@ public class TrabajadorController {
 		return new ResponseEntity(trabajadorService.listarTrabajadorEnPaginas(pageable), HttpStatus.OK);
 	}
 
-	@PostMapping("registrar")
+	@PostMapping(path = "registrar")
 	public ResponseEntity<Map<String, Object>> registrar(@Valid @RequestBody TrabajadorRequestDto request) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
@@ -44,7 +44,7 @@ public class TrabajadorController {
 			SysHttpResponse response = new SysHttpResponse(HttpStatus.OK.value(), "Registro exitoso", objSalida.getNombre() + " " + objSalida.getApellidoMaterno());
 			if (objSalida == null)
 				throw new Exception("No se pudo registrar el trabajador");
-			salida.put("response", response);
+			salida.put("data", response);
 		} catch (Exception e) {
 			SysHttpResponse response = new SysHttpResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), null);
 			salida.put("data", response);
@@ -54,22 +54,22 @@ public class TrabajadorController {
 	}
 
 
-	@PostMapping("actualizar")
+	@PostMapping(path = "actualizar")
 	public ResponseEntity<Map<String, Object>> actualizar(@Valid @RequestBody TrabajadorRequestDto request) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
-			if (request.getId() == null)
+			if (request.getId() == null || request.getId() == 0)
 				throw new Exception("Necesitamos un Id para porder actualizar el trabajador");
 			TrabajadorResponseDto objSalida = trabajadorService.insertarActualizar(request);
 			SysHttpResponse response = new SysHttpResponse(HttpStatus.OK.value(), "Actualizado exitoso", objSalida.getNombre() + " " + objSalida.getApellidoMaterno());
 			if (objSalida == null)
 				throw new Exception("No se pudo Actualizar el Trabajador");
-			salida.put("response", response);
+			salida.put("data", response);
 		} catch (Exception e) {
 			SysHttpResponse response = new SysHttpResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), e.getMessage(), null);
 			salida.put("data", response);
 		}
 
-		return new ResponseEntity<>(salida, HttpStatus.CREATED);
+		return new ResponseEntity<>(salida, HttpStatus.OK);
 	}
 }

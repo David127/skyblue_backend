@@ -3,7 +3,8 @@ package com.backend.skyblue.mapper;
 import com.backend.skyblue.dto.common.PaginationResponseDTO;
 import org.springframework.data.domain.Page;
 
-import static com.backend.skyblue.mapper.TrabajadorMapper.PAGINATION_OFFSET;
+import static com.backend.skyblue.mapper.VehiculoMapper.PAGINATION_OFFSET;
+
 
 public interface PaginationMapper {
 
