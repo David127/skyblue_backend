@@ -50,6 +50,7 @@ public interface PropietarioMapper {
 				.fechaSalida(propietario.getFechaSalida())
 				.observacion(propietario.getObservacion())
 				.estado(propietario.getEstado())
+				.ubigeo(UbigeoMapper.builResponseDto(propietario.getUbigeo()))
 				.build();
 	}
 
@@ -75,6 +76,7 @@ public interface PropietarioMapper {
 				.fechaSalida(propietarioRequestDto.getFechaSalida())
 				.observacion(propietarioRequestDto.getObservacion())
 				.estado(propietarioRequestDto.getEstado())
+				.ubigeo(UbigeoMapper.buildRequestDto(propietarioRequestDto.getUbigeo()))
 				.build();
 
 	}

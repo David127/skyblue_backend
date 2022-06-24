@@ -43,5 +43,7 @@ public class PropietarioRequestDto {
 	private String fechaSalida;
 	private String observacion;
 	private String estado;
+	@NotNull(message = "El ubigeo no debe ser vacio")
+	private UbigeoRequestDto ubigeo;
 }
 
