@@ -44,6 +44,10 @@ public class Propietario implements Serializable {
     @CreatedDate
     private Timestamp updateAt;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "ubigeo_id")
+    private Ubigeo ubigeo;
+
     public static PropietarioCreateBuilder createBuilder() {
         return new PropietarioCreateBuilder();
     }

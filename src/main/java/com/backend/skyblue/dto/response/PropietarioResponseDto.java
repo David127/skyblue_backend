@@ -31,5 +31,6 @@ public class PropietarioResponseDto {
 	private String fechaSalida;
 	private String observacion;
 	private String estado;
+	private UbigeoResponseDto ubigeo;
 }
 
