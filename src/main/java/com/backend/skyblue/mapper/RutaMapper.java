@@ -1,13 +1,20 @@
 package com.backend.skyblue.mapper;
 
+import com.backend.skyblue.dto.common.PageResponseDto;
 import com.backend.skyblue.dto.request.RutaRequestDto;
 import com.backend.skyblue.dto.request.VehiculoRequestDto;
+import com.backend.skyblue.dto.response.CargoResponseDto;
 import com.backend.skyblue.dto.response.RutaResponseDto;
+import com.backend.skyblue.models.Cargo;
 import com.backend.skyblue.models.Ruta;
 import com.backend.skyblue.models.Vehiculo;
+import org.springframework.data.domain.Page;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 public interface RutaMapper {
-
+    Integer PAGINATION_OFFSET = 1;
     static RutaResponseDto buildResponseDto(Ruta ruta){
         return RutaResponseDto.builder()
                 .id(ruta.getId())
@@ -26,7 +33,18 @@ public interface RutaMapper {
                 .id(ruta.getId())
                 .build();
     }
-
+    static PageResponseDto buildRutaPageResponseDto(Page<Ruta> rutaPage) {
+        var rutas = RutaMapper.buildListResponseEntities(rutaPage.getContent());
+        return PageResponseDto.builder()
+                .data(rutas)
+                .pagination(PaginationMapper.buildPaginationResponseFromPage(rutaPage))
+                .build();
+    }
+    static List<RutaResponseDto> buildListResponseEntities(List<Ruta> rutas) {
+        return rutas.stream()
+                .map(rts -> RutaMapper.buildResponseDto(rts))
+                .collect(Collectors.toList());
+    }
 
     static Ruta buildEntidadFromDto(RutaRequestDto rutaRequestDto){
         return Ruta.builder()
