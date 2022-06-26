@@ -1,6 +1,7 @@
 package com.backend.skyblue.mapper;
 
 import com.backend.skyblue.dto.common.PageResponseDto;
+import com.backend.skyblue.dto.request.EmpresaRequestDto;
 import com.backend.skyblue.dto.response.EmpresaResponseDto;
 import com.backend.skyblue.models.Empresa;
 import org.springframework.data.domain.Page;
@@ -39,5 +40,19 @@ public interface EmpresaMapper {
 		return empresas.stream()
 				.map(emp -> EmpresaMapper.buildResponseDto(emp))
 				.collect(Collectors.toList());
+	}
+
+	static Empresa buildEntidadFromDto(EmpresaRequestDto empresaRequestDto) {
+		return Empresa.builder()
+				.id(empresaRequestDto.getId())
+				.ruc(empresaRequestDto.getRuc())
+				.nombre(empresaRequestDto.getNombre())
+				.direccion(empresaRequestDto.getDireccion())
+				.telefono(empresaRequestDto.getTelefono())
+				.correo(empresaRequestDto.getCorreo())
+				.logo(empresaRequestDto.getLogo())
+				.ubigeo(UbigeoMapper.buildRequestDto(empresaRequestDto.getUbigeo()))
+				.ruta(RutaMapper.buildRequestDto(empresaRequestDto.getRuta()))
+				.build();
 	}
 }
