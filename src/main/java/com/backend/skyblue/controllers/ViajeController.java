@@ -38,6 +38,7 @@ public class ViajeController {
 	public ResponseEntity<Map<String, Object>> registrar(@Valid @RequestBody ViajeRequestDto request) {
 		Map<String, Object> salida = new HashMap<>();
 		try {
+			System.out.println(request);
 			if (viajesService.existeViaje(request))
 				throw new Exception("La unidad ya se encuentra en ruta");
 			ViajeResponseDto objSalida = viajesService.insertarActualizar(request);

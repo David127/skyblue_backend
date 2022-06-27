@@ -2,12 +2,8 @@ package com.backend.skyblue.mapper;
 
 import com.backend.skyblue.dto.common.PageResponseDto;
 import com.backend.skyblue.dto.request.RutaRequestDto;
-import com.backend.skyblue.dto.request.VehiculoRequestDto;
-import com.backend.skyblue.dto.response.CargoResponseDto;
 import com.backend.skyblue.dto.response.RutaResponseDto;
-import com.backend.skyblue.models.Cargo;
 import com.backend.skyblue.models.Ruta;
-import com.backend.skyblue.models.Vehiculo;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
