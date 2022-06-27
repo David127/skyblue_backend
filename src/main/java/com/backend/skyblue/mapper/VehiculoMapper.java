@@ -45,10 +45,36 @@ public interface VehiculoMapper {
 				.build();
 	}
 
-	public static Vehiculo buildRequestDto(VehiculoRequestDto vehiculo) {
+	public static Vehiculo buildRequestDto(VehiculoRequestDto vehiculoRequestDto) {
 
 		return Vehiculo.builder()
-				.id(vehiculo.getId())
+				.id(vehiculoRequestDto.getId())
+				.placa(vehiculoRequestDto.getPlaca())
+				.padron(vehiculoRequestDto.getPadron())
+				.clase(vehiculoRequestDto.getClase())
+				.marca(vehiculoRequestDto.getMarca())
+				.modelo(vehiculoRequestDto.getModelo())
+				.color(vehiculoRequestDto.getColor())
+				.tipo(vehiculoRequestDto.getTipo())
+				.tarjetaPropiedad(vehiculoRequestDto.getTarjetaPropiedad())
+				.anioFabricacion(vehiculoRequestDto.getAnioFabricacion())
+				.nroMoto(vehiculoRequestDto.getNroMoto())
+				.pesoNeto(vehiculoRequestDto.getPesoNeto())
+				.pesoBruto(vehiculoRequestDto.getPesoBruto())
+				.nroAsientos(vehiculoRequestDto.getNroAsientos())
+				.nroPasajeros(vehiculoRequestDto.getNroPasajeros())
+				.tipoCombustible(vehiculoRequestDto.getTipoCombustible())
+				.carroceria(vehiculoRequestDto.getCarroceria())
+				.SerieMotor(vehiculoRequestDto.getSerieMotor())
+				.nroCilindros(vehiculoRequestDto.getNroCilindros())
+				.nroRuedas(vehiculoRequestDto.getNroRuedas())
+				.longitud(vehiculoRequestDto.getLongitud())
+				.altura(vehiculoRequestDto.getAltura())
+				.ancho(vehiculoRequestDto.getAncho())
+				.cargaUtil(vehiculoRequestDto.getCargaUtil())
+				.nroEjes(vehiculoRequestDto.getNroEjes())
+				.kilomentraje(vehiculoRequestDto.getKilomentraje())
+				.ruta(RutaMapper.buildRequestDto(vehiculoRequestDto.getRuta()))
 				.build();
 	}
 
