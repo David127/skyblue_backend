@@ -2,13 +2,8 @@ package com.backend.skyblue.mapper;
 
 import com.backend.skyblue.dto.common.PageResponseDto;
 import com.backend.skyblue.dto.request.ConductorRequestDto;
-import com.backend.skyblue.dto.request.TrabajadorRequestDto;
 import com.backend.skyblue.dto.response.ConductorResponseDto;
-import com.backend.skyblue.dto.response.TrabajadorResponseDto;
-import com.backend.skyblue.dto.response.ViajeResponseDto;
 import com.backend.skyblue.models.Conductor;
-import com.backend.skyblue.models.Trabajador;
-import com.backend.skyblue.models.Viaje;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -62,7 +57,28 @@ public interface ConductorMapper {
     }
 
     static Conductor buildRequestDto(ConductorRequestDto conductor) {
-        return Conductor.builder().id(conductor.getId()).build();
+        return Conductor.builder()
+                .id(conductor.getId())
+                .nombre(conductor.getNombre())
+                .apellidoPaterno(conductor.getApellidoPaterno())
+                .apellidoMaterno(conductor.getApellidoMaterno())
+                .tipoDocumento(conductor.getTipoDocumento())
+                .nroDocumento(conductor.getNroDocumento())
+                .telefono(conductor.getTelefono())
+                .correo(conductor.getCorreo())
+                .direccion(conductor.getDireccion())
+                .sexo(conductor.getSexo())
+                .estadoCivil(conductor.getEstadoCivil())
+                .fechaNacimiento(conductor.getFechaNacimiento())
+                .observacion(conductor.getObservacion())
+                .estado(conductor.getEstado())
+                .nroLicenciaCorrelativo(conductor.getNroLicenciaCorrelativo())
+                .claseCategoria(conductor.getClaseCategoria())
+                .estadoLicencia(conductor.getEstadoLicencia())
+                .fechaExpedicion(conductor.getFechaExpedicion())
+                .fechaRevalidacion(conductor.getFechaRevalidacion())
+                .restricciones(conductor.getRestricciones())
+                .build();
     }
 
     static Conductor buildEntidadFromDto(ConductorRequestDto conductorRequestDto) {

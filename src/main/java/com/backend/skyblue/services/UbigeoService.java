@@ -13,6 +13,8 @@ public class UbigeoService {
 	private final UbigeoRepository repository;
 
 	public List<String> listaDepartamentos() {
+		var departamentos = repository.listaDepartamentos();
+		;
 		return repository.listaDepartamentos();
 	}
 
