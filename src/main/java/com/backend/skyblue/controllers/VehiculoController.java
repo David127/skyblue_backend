@@ -55,7 +55,7 @@ public class VehiculoController {
 		return new ResponseEntity<>(salida, HttpStatus.CREATED);
 	}
 
-	@PostMapping(path = "actualizar")
+	@PutMapping(path = "actualizar")
 	public ResponseEntity<Map<String, Object>> actualizar(@Valid @RequestBody VehiculoRequestDto request) {
 		Map<String, Object> salida = new HashMap<>();
 		try {

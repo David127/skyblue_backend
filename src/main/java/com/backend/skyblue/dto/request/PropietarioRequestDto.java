@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
@@ -29,9 +30,11 @@ public class PropietarioRequestDto {
 	private String tipoDocumento;
 	@NotNull (message = "El el numero de documento no puedo ser vacio")
 	private String nroDocumento;
+	@Size(max = 9)
 	private String telefono;
 	@Email(message = "Error ene el formato del correo")
 	private String correo;
+	@NotNull (message = "La direccion no puede ser vacio")
 	private String direccion;
 	private String sexo;
 	private String estadoCivil;
@@ -40,5 +43,7 @@ public class PropietarioRequestDto {
 	private String fechaSalida;
 	private String observacion;
 	private String estado;
+	@NotNull(message = "El ubigeo no debe ser vacio")
+	private UbigeoRequestDto ubigeo;
 }
 
