@@ -1,5 +1,7 @@
 package com.backend.skyblue.models;
 
+import com.backend.skyblue.mapper.CargoCreateBuilder;
+import com.backend.skyblue.mapper.RutaCreateBuilder;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,4 +27,9 @@ public class Ruta implements Serializable {
     private String lugarDestino;
     private Double distaciaIda;
     private Double distaciaVuelta;
+
+    public static RutaCreateBuilder createBuilder() {
+
+        return new RutaCreateBuilder();
+    }
 }
